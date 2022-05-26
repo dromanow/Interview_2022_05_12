@@ -10,7 +10,7 @@
 </div>
 {% for object in object_list %}
     <div>
-        {{object.first_name}} {{object.last_name}}
+        {{object.text}} {{object.author.first_name}} {{object.author.last_name}}
     </div>
 {% endfor %}
 </body>
