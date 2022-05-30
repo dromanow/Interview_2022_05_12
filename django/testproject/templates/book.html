@@ -6,10 +6,14 @@
 </head>
 <body>
 <div>
+    {{site.name}}
+</div>
+<div>
     {{user.name}}  {{user.age}}
 </div>
 {% for object in object_list %}
     <div>
+        {{object.site.name}}
         {{object.title}}
         {% for author in object.authors.all %}
             {{author.first_name}} {{author.last_name}}

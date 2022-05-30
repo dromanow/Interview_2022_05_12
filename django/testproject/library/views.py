@@ -1,3 +1,4 @@
+from django.contrib.sites.shortcuts import get_current_site
 from django.shortcuts import render
 from django.views.generic import ListView
 from .models import Author, Bio, Book
@@ -21,13 +22,21 @@ class AuthorListView(UserListView):
 class BookListView(UserListView):
     model = Book
     # queryset = Bio.objects.select_related('author').all()
-    queryset = Book.objects.prefetch_related('authors').all()
+    queryset = Book.on_site.prefetch_related('authors').all()
     template_name = 'book.html'
+
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(*args, **kwargs)
+        context.update({
+            'user': {'name': 'Denis', 'age': '41'},
+            'site': get_current_site(request=self.request)
+        })
+        return context
 
 
 class BioListView(UserListView):
     model = Bio
-    queryset = Bio.objects.select_related('author').all()
+    queryset = Bio.objects.not_deleted().select_related('author').all()
     template_name = 'bio.html'
     # extra_context = {
     #     'user': {'name': 'Denis', 'age': '41'}

@@ -9,6 +9,7 @@
     {{user.name}}  {{user.age}}
 </div>
 {% for object in object_list %}
+    {{ object.deleted }}
     <div>
         {{object.text}} {{object.author.first_name}} {{object.author.last_name}}
     </div>
