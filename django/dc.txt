@@ -1,0 +1,19 @@
+#1
+{ [nginx] -> [backend] -> [db] }
+
+#2
+{ [nginx] -> [backend] } -> { [db] }
+
+#3
+{ [nginx] -> [backend] } -> { [db] }
+           { [backend] }
+           { [backend] }
+           { [backend] }
+
+#4
+{ [nginx] } -> { [backend] } -> { [db] }
+{ [nginx] }    { [backend] }
+{ [nginx] }    { [backend] }
+               { [backend] }
+               { [backend] }
+               { [backend] }
